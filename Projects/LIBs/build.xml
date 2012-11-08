@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="LIBs">
+
+	<property environment="env"/>
+
+	<property name="jEMACamIn.location" value="../jEMACamIn"/>
+    <property name="workspace_loc:LIBs/JMF-2.1.1e/linux32" value="JMF-2.1.1e/linux32"/>
+
+	<property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.2"/>
+    <property name="source" value="1.3"/>
+
+	<path id="LIBs.classpath"/>
+    <path id="run.LIBs_JMStudio-linux.classpath">
+        <path refid="LIBs.classpath"/>
+        <pathelement location="JMF-2.1.1e/linux32/jmf.jar"/>
+        <pathelement location="JMF-2.1.1e/linux32/mediaplayer.jar"/>
+        <pathelement location="JMF-2.1.1e/linux32/multiplayer.jar"/>
+    </path>
+    <path id="run.LIBs_JMFRegistry-linux.classpath">
+        <path refid="LIBs.classpath"/>
+        <pathelement location="JMF-2.1.1e/linux32/jmf.jar"/>
+        <pathelement location="JMF-2.1.1e/linux32/mediaplayer.jar"/>
+        <pathelement location="JMF-2.1.1e/linux32/multiplayer.jar"/>
+    </path>
+    <path id="run.LIBs_JMFInit-linux.classpath">
+        <path refid="LIBs.classpath"/>
+        <pathelement location="JMF-2.1.1e/linux32/jmf.jar"/>
+        <pathelement location="JMF-2.1.1e/linux32/mediaplayer.jar"/>
+        <pathelement location="JMF-2.1.1e/linux32/multiplayer.jar"/>
+    </path>
+
+	<target name="init"/>
+    <target name="clean"/>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects">
+        <ant antfile="${jEMACamIn.location}/build.xml" inheritAll="false" target="clean"/>
+        <ant antfile="${jEMACamIn.location}/build.xml" inheritAll="false" target="build"/>
+    </target>
+
+	<target name="LIBs_JMStudio-linux">
+        <java classname="JMStudio" failonerror="true" fork="yes">
+            <env key="LD_LIBRARY_PATH" value="${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <classpath refid="run.LIBs_JMStudio-linux.classpath"/>
+        </java>
+    </target>
+    <target name="LIBs_JMFRegistry-linux">
+        <java classname="JMFRegistry" failonerror="true" fork="yes">
+            <env key="LD_LIBRARY_PATH" value="${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <classpath refid="run.LIBs_JMFRegistry-linux.classpath"/>
+        </java>
+    </target>
+    <target name="LIBs_JMFInit-linux">
+        <java classname="JMFInit" failonerror="true" fork="yes">
+            <env key="LD_LIBRARY_PATH" value="${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <classpath refid="run.LIBs_JMFInit-linux.classpath"/>
+        </java>
+    </target>
+
+</project>

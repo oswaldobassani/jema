@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="all" name="ScreenUtils">
+
+  <!-- Project Properties -->
+  <property name="jarname" value="ScreenUtils"/>  
+  <property name="run_class" value=""/>
+
+  <!-- General Properties -->
+  <property name="root" value="."/>
+  <property file="${root}/../common.properties"/>
+  <!-- OS Sensitive General Properties -->
+  <property file="${root}/../${os.name}.properties"/>
+
+  <!-- Eclipse-Tasks -->
+  <import file="${root}/../eclipse-tasks.xml"/>
+  
+  <!-- Common-Tasks -->
+  <import file="${root}/../common-tasks.xml"/>
+  
+  <!-- Project Properties - PATHs -->
+  <import file="${root}/../common-libs.xml"/>
+  
+</project>

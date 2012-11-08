@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project basedir="." default="build" name="jEMACamIn">
+
+    <property environment="env"/>
+
+    <property name="LIBs.location" value="../LIBs"/>
+    <property name="workspace_loc:DataDir" value="../DataDir"/>
+    <property name="workspace_loc:LIBs/lwjgl-2.0/native/linux" value="../LIBs/lwjgl-2.0/native/linux"/>
+    <property name="workspace_loc:LIBs/JMF-2.1.1e/linux32" value="../LIBs/JMF-2.1.1e/linux32"/>
+    <property name="workspace_loc:jEMACamIn/src-jfw-Mod/native/lib" value="src-jfw-Mod/native/lib"/>
+    <property name="DataDir.location" value="../DataDir"/>
+
+    <property name="cpptasks_jar" value="../LIBs/cpptasks-1.0b5/cpptasks.jar"/>
+
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.5"/>
+    <property name="source" value="1.5"/>
+
+    <path id="DataDir.classpath"/>
+    <path id="LIBs.classpath"/>
+    <path id="jEMACamIn.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="${LIBs.location}/lwjgl-2.0/jar/lwjgl.jar"/>
+        <pathelement location="${LIBs.location}/jPCT-1.18.1/jpct.jar"/>
+        <pathelement location="${LIBs.location}/JMF-2.1.1e/linux32/jmf.jar"/>
+        <path refid="DataDir.classpath"/>
+        <path refid="LIBs.classpath"/>
+    </path>
+    <path id="run.JMFBassaniEffects-linux.classpath">
+        <path refid="jEMACamIn.classpath"/>
+        <pathelement location="${LIBs.location}/JMF-2.1.1e/linux32/mediaplayer.jar"/>
+        <pathelement location="${LIBs.location}/JMF-2.1.1e/linux32/multiplayer.jar"/>
+    </path>
+    <path id="run.DialogTesteVideo-linux.classpath">
+        <path refid="jEMACamIn.classpath"/>
+        <pathelement location="${LIBs.location}/JMF-2.1.1e/linux32/mediaplayer.jar"/>
+        <pathelement location="${LIBs.location}/JMF-2.1.1e/linux32/multiplayer.jar"/>
+    </path>
+    <path id="run.DialogTeste-linux.classpath">
+        <path refid="jEMACamIn.classpath"/>
+        <pathelement location="${LIBs.location}/JMF-2.1.1e/linux32/mediaplayer.jar"/>
+        <pathelement location="${LIBs.location}/JMF-2.1.1e/linux32/multiplayer.jar"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src-jema" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src-skeletalapi" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src-jmf-CodecEffects" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src-jmf-example" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src-jmf-Mod" excludes="**/*.launch, **/*.java"/>
+        </copy>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src-jfw-Mod/java" excludes="**/*.launch, **/*.java"/>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall">
+        <ant antfile="${DataDir.location}/build.xml" inheritAll="false" target="clean"/>
+        <ant antfile="${LIBs.location}/build.xml" inheritAll="false" target="clean"/>
+    </target>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects">
+        <ant antfile="${DataDir.location}/build.xml" inheritAll="false" target="build-project"/>
+        <ant antfile="${LIBs.location}/build.xml" inheritAll="false" target="build-project"/>
+    </target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src-jema"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src-skeletalapi"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src-jmf-CodecEffects"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src-jmf-example"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src-jmf-Mod"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javac>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
+            <src path="src-jfw-Mod/java"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javac>
+        <javah destdir="src-jfw-Mod/native/header" force="yes" verbose="no" old="no">
+            <class name="uk.ac.stand.dcs.media.protocol.fwc.FireWireCamera"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javah>
+        <javah destdir="src-jmf-FirewireProtocols/native/header" force="yes" verbose="no" old="no">
+            <class name="br.ufabc.bassani.jmf.firewire.media.protocol.fwc.FireWireCamera"/>
+            <class name="br.ufabc.bassani.jmf.firewire.media.protocol.sfwc.StereoFireWireCamera"/>
+            <class name="br.ufabc.bassani.jmf.firewire.media.protocol.rsfwc.RealStereoFireWireCamera"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </javah>
+        <taskdef resource="cpptasks.tasks" classpath="${cpptasks_jar}" />
+        <!-- G++ via ant -->
+        <!-- FIXME:
+        <cc name="g++" debug="true" exceptions="true" incremental="true" 
+                link="static" 
+                objdir="src-jfw-Mod/native/lib_cpp_simples/objs/" 
+                outfile="src-jfw-Mod/native/lib_cpp_simples/FireWireCamera"
+                outtype="static">
+            <compiler name="g++">
+                <fileset dir="src-jfw-Mod/native/lib_cpp_simples/">
+                    <include name="*.cpp"/>
+                    <include name="*.h"/>
+                </fileset>
+                <includepath path="/usr/lib/jvm/java-6-sun/include"/>
+                <includepath path="/usr/lib/jvm/java-6-sun/include/linux"/>
+                <compilerarg value="-Wall"/>
+                <compilerarg value="-Wl,-soname,libFireWireCamera.so"/>
+            </compiler>
+            <linker name="g++">
+                <libset libs="c,stdc++,raw1394,dc1394_control"/>
+            </linker>
+        </cc> 
+        -->
+        <exec dir="src-jfw-Mod/native/lib_cpp_simples/" 
+            executable="/bin/bash" 
+            os="Linux">
+          <arg line="compile.sh"/>
+        </exec>
+        
+    </target>
+
+<!--
+ <target name="jnilib" depends="init">
+  <cc name="${cc}" outfile="jnilib" outtype="static">
+   <compiler refid="${cc}-compiler"/>
+   <linker refid="${cc}-linker"/>
+   <fileset dir="." includes="jnilib1.c jnilib2.c"/>
+  </cc>
+ </target>
+ <target name="jnidemo" depends="jnilib">
+  <cc name="${cc}" outfile="jnidemo" outtype="shared">
+   <compiler extends="${cc}-compiler">
+    <includepath location="${java.home}/../include"/>
+    <includepath location="${java.home}/../include/${platform}"/>
+    <compilerarg value="-O0" if="gcc"/>
+    <compilerarg value="/Od" if="msvc"/>
+   </compiler>
+   <linker refid="${cc}-linker"/>
+   <fileset dir="." includes="jnidemo.c"/>
+   <libset dir="." libs="jnilib"/>
+  </cc>
+ </target>
+-->
+    
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+
+    <target name="SkeletalAnimationApp-linux">
+        <java classname="br.ufabc.bassani.jpct.skeletal.SkeletalAnimationApp" dir="${workspace_loc:DataDir}" failonerror="true" fork="yes">
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/lwjgl-2.0/native/linux}"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </java>
+    </target>
+    <target name="JMFBassaniEffects-linux">
+        <java classname="br.bassani.jmf.JMFBassaniEffects" dir="${workspace_loc:DataDir}" failonerror="true" fork="yes">
+            <env key="LD_LIBRARY_PATH" value="${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <classpath refid="run.JMFBassaniEffects-linux.classpath"/>
+        </java>
+    </target>
+    <target name="DialogTesteVideo-linux">
+        <java classname="br.bassani.tetris.swing.DialogTesteVideo" dir="${workspace_loc:DataDir}" failonerror="true" fork="yes">
+            <env key="LD_LIBRARY_PATH" value="${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <classpath refid="run.DialogTesteVideo-linux.classpath"/>
+        </java>
+    </target>
+    <target name="DialogTeste-linux">
+        <java classname="br.bassani.tetris.swing.DialogTeste" dir="${workspace_loc:DataDir}" failonerror="true" fork="yes">
+            <env key="LD_LIBRARY_PATH" value="${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/JMF-2.1.1e/linux32}"/>
+            <classpath refid="run.DialogTeste-linux.classpath"/>
+        </java>
+    </target>
+    <target name="BayerPattern2RGBDataFileViewer">
+        <java classname="sun.applet.AppletViewer" dir="${workspace_loc:DataDir}" failonerror="true" fork="yes">
+            <arg line="BayerPattern2RGBDataFileViewer.html"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </java>
+    </target>
+    <target name="BayerPattern2RGB">
+        <java classname="sun.applet.AppletViewer" dir="." failonerror="true" fork="yes">
+            <jvmarg line="-Djava.library.path=${workspace_loc:LIBs/JMF-2.1.1e/linux32}:${workspace_loc:jEMACamIn/src-jfw-Mod/native/lib}:/usr/lib"/>
+            <arg line="BayerPattern2RGB.html"/>
+            <classpath refid="jEMACamIn.classpath"/>
+        </java>
+    </target>
+
+</project>

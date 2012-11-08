@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src-jemacamin"/>
+	<classpathentry kind="src" path="src-jmf-effects"/>
+	<classpathentry kind="src" path="src-jmf-example"/>
+	<classpathentry kind="src" path="src-jmf-sun_mod"/>
+	<classpathentry kind="src" path="src-jcamcalib/java"/>
+	<classpathentry kind="src" path="src-jmf-firewireprotocols/java"/>
+	<classpathentry kind="src" path="src-gpusurf/java"/>
+	<classpathentry kind="src" path="src-surf/java"/>
+	<classpathentry kind="src" path="src-skeletalapi"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/LIBs/JMF/2.1.1e/linux32/jmf.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/NyARToolkit-3.0.0-bassani"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/DataDir"/>
+	<classpathentry kind="lib" path="/LIBs/jPCT/1.22/lib/jpct/jpct.jar"/>
+	<classpathentry kind="lib" path="/LIBs/Bones/bones.jar"/>
+	<classpathentry kind="lib" path="/LIBs/Bones/dependencias/jme-ogrexml-2.0.1-exposed.jar"/>
+	<classpathentry kind="lib" path="/LIBs/Bones/dependencias/jme-model-2.0.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

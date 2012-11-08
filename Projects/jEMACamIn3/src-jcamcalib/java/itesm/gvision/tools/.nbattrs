@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="FileChooserImage.java">
+        <attr name="class_dependency_java.beans.PropertyChangeListener" stringvalue="ImagePreview"/>
+        <attr name="class_dependency_javax.swing.filechooser.FileFilter" stringvalue="ImageFilter"/>
+        <attr name="class_dependency_javax.swing.JFileChooser" stringvalue="FileChooserImage"/>
+        <attr name="class_dependency_javax.swing.JComponent" stringvalue="ImagePreview"/>
+    </fileobject>
+    <fileobject name="VisorCamara.java">
+        <attr name="class_dependency_javax.swing.JFrame" stringvalue="VisorCamara"/>
+    </fileobject>
+</attributes>

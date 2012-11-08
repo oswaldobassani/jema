@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="lib/src"/>
+	<classpathentry kind="src" path="utils/j2se/src"/>
+	<classpathentry kind="src" path="utils/java3d/src"/>
+	<classpathentry kind="src" path="utils/jmf/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LIBs"/>
+	<classpathentry kind="lib" path="/LIBs/JMF/2.1.1e/linux32/jmf.jar"/>
+	<classpathentry kind="lib" path="/LIBs/Java3D/1.5.1/linux/i386/vecmath.jar"/>
+	<classpathentry kind="lib" path="/LIBs/Java3D/1.5.1/linux/i386/j3dcore.jar"/>
+	<classpathentry kind="lib" path="/LIBs/Java3D/1.5.1/linux/i386/j3dutils.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
